@@ -5,86 +5,121 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-function InboxMockup() {
+const features = [
+  {
+    title: 'Always on',
+    copy: 'Answers customer enquiries 24/7, even when your team is offline.',
+    icon: '24',
+    mockup: <AlwaysOnMockup />,
+  },
+  {
+    title: 'Trained on your business',
+    copy: 'Update your knowledge base in a Google Sheet. Eco reflects the changes instantly.',
+    icon: 'KB',
+    mockup: <SheetMockup />,
+    wide: true,
+  },
+  {
+    title: 'Never guesses',
+    copy: "If Eco doesn't know the answer, it captures the customer's name and contact and flags it for your team.",
+    icon: 'OK',
+    mockup: <HandoffMockup />,
+  },
+  {
+    title: 'Speaks your language',
+    copy: 'Eco responds in your tone: warm, professional, and on-brand.',
+    icon: 'Hi',
+    mockup: <ToneMockup />,
+  },
+  {
+    title: 'One line of code',
+    copy: 'Embed Eco on any website in minutes. No technical knowledge needed.',
+    icon: '</>',
+    mockup: <CodeMockup />,
+    wide: true,
+  },
+]
+
+function AlwaysOnMockup() {
   return (
-    <div className="features-inbox-mock" aria-hidden="true">
-      <div className="features-sidebar-card">
-        <span>MY INBOX</span>
-        <p>Website chat</p>
-        <p>WhatsApp</p>
-        <p>Email support</p>
-      </div>
-      <div className="features-chat-card">
-        <span>Customer</span>
-        <p>Can I change my delivery address?</p>
-        <strong>Eco answered</strong>
+    <div className="features-live-mock" aria-hidden="true">
+      <div className="features-orbit-clock">24/7</div>
+      <div className="features-chat-card is-live">
+        <span>11:48 PM</span>
+        <p>Do you deliver tomorrow?</p>
+        <strong>Eco answered instantly</strong>
       </div>
     </div>
   )
 }
 
-function TrainingMockup() {
+function SheetMockup() {
   return (
-    <div className="features-training-mock" aria-hidden="true">
-      <div className="features-bars">
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="features-doc-list">
+    <div className="features-sheet-mock" aria-hidden="true">
+      <div className="features-sheet-window">
         <div>
-          <strong>FAQs</strong>
-          <span>126 answers</span>
+          <span>Question</span>
+          <span>Answer</span>
+          <span>Status</span>
         </div>
         <div>
-          <strong>Policies</strong>
-          <span>42 rules</span>
+          <strong>Return policy</strong>
+          <span>14 days</span>
+          <em>Synced</em>
         </div>
         <div>
-          <strong>Products</strong>
-          <span>Synced today</span>
+          <strong>Delivery fee</strong>
+          <span>By location</span>
+          <em>Synced</em>
         </div>
-      </div>
-      <div className="features-score">
-        <span>94%</span>
-        <small>trained</small>
+        <div>
+          <strong>Store hours</strong>
+          <span>9am - 6pm</span>
+          <em>Synced</em>
+        </div>
       </div>
     </div>
   )
 }
 
-function AnalyticsMockup() {
-  const rows = ['Shipping delay', 'Refund request', 'Pricing question']
-
+function HandoffMockup() {
   return (
-    <div className="features-analytics-mock" aria-hidden="true">
-      <div className="features-timeline">
-        <span>09:00</span>
-        <span>12:00</span>
-        <span>15:00</span>
-        <span>18:00</span>
+    <div className="features-handoff-mock" aria-hidden="true">
+      <div className="features-alert-card">
+        <span>Needs team reply</span>
+        <strong>Wholesale order request</strong>
+        <p>Name and contact captured</p>
       </div>
-      <div className="features-ticket-board">
-        {rows.map((row, index) => (
-          <div key={row} className={`features-ticket is-${index + 1}`}>
-            <strong>{row}</strong>
-            <span>{index === 0 ? 'Resolved' : 'Learning'}</span>
-          </div>
-        ))}
+      <div className="features-ticket is-flagged">
+        <strong>Flagged</strong>
+        <span>Human review</span>
       </div>
     </div>
   )
 }
 
-function WidgetMockup() {
+function ToneMockup() {
   return (
-    <div className="features-widget-mock" aria-hidden="true">
-      <div className="features-widget-paper is-left">Themes</div>
+    <div className="features-tone-mock" aria-hidden="true">
+      <div className="features-tone-pill is-warm">Warm</div>
+      <div className="features-tone-pill is-pro">Professional</div>
+      <div className="features-tone-card">Hi there, I can help with that.</div>
+    </div>
+  )
+}
+
+function CodeMockup() {
+  return (
+    <div className="features-code-mock" aria-hidden="true">
+      <div className="features-code-window">
+        <span>{'<script'}</span>
+        <strong>src="eco/widget.js"</strong>
+        <span>{'defer></script>'}</span>
+      </div>
       <div className="features-widget-timer">
-        <span>Eco</span>
-        <strong>24/7</strong>
+        <span>Live</span>
+        <strong>1</strong>
       </div>
-      <div className="features-widget-paper is-right">Channels</div>
     </div>
   )
 }
@@ -99,7 +134,7 @@ export default function Features() {
         y: 48,
         scale: 0.98,
         duration: 0.75,
-        delay: index * 0.07,
+        delay: index * 0.06,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: card,
@@ -115,45 +150,22 @@ export default function Features() {
       <div className="features-container">
         <div className="features-heading">
           <span className="features-pill">Features</span>
-          <h2>Keep every conversation in one place</h2>
-          <p>Forget scattered support tools. Eco brings answers, training, channels, and insight into one calm workspace.</p>
+          <h2>How can Eco Help me?</h2>
+          <p>Eco keeps your customer support responsive, accurate, and easy to update without adding more operational weight.</p>
         </div>
 
         <div className="features-grid">
-          <article className="features-card">
-            <InboxMockup />
-            <div className="features-card-copy">
-              <h3>Unified customer inbox</h3>
-              <p>Work across web chat, WhatsApp, and email from one shared view, with Eco handling the first response.</p>
-            </div>
-          </article>
-
-          <article className="features-card features-card-wide">
-            <TrainingMockup />
-            <div className="features-card-copy">
-              <h3>Business-aware training</h3>
-              <p>Upload docs, crawl your site, and refine answers so Eco knows your policies, product details, and tone.</p>
-            </div>
-          </article>
-
-          <article className="features-card features-card-large">
-            <div className="features-card-copy is-side">
-              <h3>Advanced conversation analytics</h3>
-              <p>See what customers ask, which answers convert, and where your team should improve the support flow.</p>
-            </div>
-            <AnalyticsMockup />
-          </article>
-
-          <article className="features-card features-card-dashed">
-            <WidgetMockup />
-            <div className="features-card-copy">
-              <h3>Customizable chat widgets</h3>
-              <p>Match Eco to your brand, choose the right channels, and launch a polished assistant anywhere.</p>
-            </div>
-          </article>
+          {features.map(({ title, copy, icon, mockup, wide }) => (
+            <article key={title} className={`features-card ${wide ? 'features-card-wide' : ''}`}>
+              <div className="features-card-icon">{icon}</div>
+              {mockup}
+              <div className="features-card-copy">
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </div>
+            </article>
+          ))}
         </div>
-
-        <p className="features-more">and a lot more features...</p>
       </div>
     </section>
   )

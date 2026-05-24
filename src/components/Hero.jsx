@@ -4,105 +4,6 @@ import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(useGSAP)
 
-function MiniAppIcon() {
-  return (
-    <div className="chat-hero-mini-app hero-float" aria-hidden="true">
-      <span className="is-cyan" />
-      <span />
-      <span />
-      <span />
-    </div>
-  )
-}
-
-function ChatBadge() {
-  return (
-    <div className="chat-hero-badge" aria-hidden="true">
-      <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
-        <rect width="42" height="42" rx="9" fill="url(#chatBadgeGradient)" />
-        <path d="M12 15.5h18M12 21h12M16 31l-4 3v-8" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <defs>
-          <linearGradient id="chatBadgeGradient" x1="7" y1="5" x2="35" y2="38" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#48d9f5" />
-            <stop offset="1" stopColor="#1f7ded" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  )
-}
-
-function StickyNote() {
-  return (
-    <div className="chat-hero-note hero-float" aria-hidden="true">
-      <div className="chat-hero-paper" />
-      <div className="chat-hero-sticky">
-        <span />
-        <p>Train Eco on your FAQs, products, policies, and tone in minutes.</p>
-      </div>
-      <ChatBadge />
-    </div>
-  )
-}
-
-function KnowledgeCard() {
-  return (
-    <div className="chat-hero-knowledge hero-float" aria-hidden="true">
-      <div className="chat-hero-bot">
-        <span />
-      </div>
-      <div className="chat-hero-knowledge-sheet">
-        <p>Knowledge base</p>
-        <div className="chat-hero-pill" />
-        <div className="chat-hero-update">
-          <strong>New answers learned</strong>
-          <span>Eco synced your help center</span>
-          <small>Ready now</small>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ConversationCard() {
-  const rows = [
-    ['24', 'Order status question', '92%', 'is-orange'],
-    ['18', 'Pricing plan answer', '100%', 'is-green'],
-  ]
-
-  return (
-    <div className="chat-hero-conversations hero-float" aria-hidden="true">
-      <h3>Live conversations</h3>
-      {rows.map(([count, title, rate, tone]) => (
-        <div className="chat-hero-row" key={title}>
-          <span className={tone}>{count}</span>
-          <div>
-            <p>{title}</p>
-            <small>Resolved by Eco</small>
-          </div>
-          <div className="chat-hero-progress">
-            <i />
-          </div>
-          <em>{rate}</em>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function IntegrationsCard() {
-  return (
-    <div className="chat-hero-integrations hero-float" aria-hidden="true">
-      <h3>100+ Integrations</h3>
-      <div className="chat-hero-channel-icons">
-        <span className="gmail">M</span>
-        <span className="whatsapp">W</span>
-        <span className="mail">@</span>
-      </div>
-    </div>
-  )
-}
-
 function HeadlineWords({ children, muted = false }) {
   return children.split(' ').map((word, index) => (
     <span key={`${word}-${index}`} className={`chat-hero-word ${muted ? 'is-muted' : ''}`}>
@@ -123,7 +24,7 @@ export default function Hero() {
       ease: 'power3.out',
     })
 
-    gsap.from('.chat-hero-word', {
+    gsap.from('.chat-hero-line:not(.is-emphasis) .chat-hero-word', {
       y: 62,
       opacity: 0,
       duration: 0.9,
@@ -132,13 +33,23 @@ export default function Hero() {
       delay: 0.22,
     })
 
-    gsap.from('.hero-float', {
+    gsap.from('.chat-hero-line.is-emphasis .chat-hero-word', {
+      y: 78,
       opacity: 0,
-      y: 24,
+      scale: 0.94,
+      duration: 0.95,
+      stagger: 0.075,
+      ease: 'power3.out',
+      delay: 0.48,
+    })
+
+    gsap.from('.chat-hero-highlight', {
+      scaleX: 0,
+      opacity: 0,
       duration: 0.75,
-      stagger: 0.08,
-      ease: 'power2.out',
-      delay: 0.5,
+      ease: 'power3.out',
+      delay: 0.95,
+      transformOrigin: 'left center',
     })
 
     gsap.from('.chat-hero-sub', {
@@ -155,23 +66,18 @@ export default function Hero() {
     <section id="hero" ref={heroRef} className="chat-hero">
       <div className="chat-hero-shell">
         <div className="chat-hero-stage">
-          <StickyNote />
-          <MiniAppIcon />
-          <KnowledgeCard />
-          <ConversationCard />
-          <IntegrationsCard />
-
           <div className="chat-hero-copy">
             <h1>
-              <span>
-                <HeadlineWords>Answer, support, and sell</HeadlineWords>
+              <span className="chat-hero-line">
+                <HeadlineWords>Tired of answering the same</HeadlineWords>
               </span>
-              <span>
-                <HeadlineWords muted>all in one chat</HeadlineWords>
+              <span className="chat-hero-line is-emphasis">
+                <HeadlineWords muted>questions over and over?</HeadlineWords>
+                <span className="chat-hero-highlight" aria-hidden="true" />
               </span>
             </h1>
             <p className="chat-hero-sub">
-              Eco learns your business and gives every customer an instant, helpful answer.
+              Meet Eco, your 24/7 customer assistant that answers customer enquiries exactly how you would answer it.
             </p>
             <a href="#cta" className="chat-hero-cta chat-hero-sub">
               Get free demo

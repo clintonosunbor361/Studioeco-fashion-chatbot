@@ -8,18 +8,18 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 const steps = [
   {
     icon: '01',
-    title: 'Connect your sources',
-    description: 'Add your website, help center, PDFs, and product docs so Eco can understand the business context.',
+    title: 'You talk, we listen',
+    description: 'Tell us how your business works and how you speak to customers.',
   },
   {
     icon: '02',
-    title: 'Train the assistant',
-    description: 'Review suggested answers, set tone rules, and approve the responses customers should receive.',
+    title: 'We build Eco around you',
+    description: 'Your tone, your services, your answers. Eco is built to represent your business, not a generic bot.',
   },
   {
     icon: '03',
-    title: 'Launch everywhere',
-    description: 'Embed Eco on your site and connect WhatsApp or email so customers get instant help on every channel.',
+    title: 'Never miss an enquiry again',
+    description: 'Eco goes live on your website and starts working immediately. Day, night, weekends.',
   },
 ]
 
@@ -31,7 +31,7 @@ function ProductMockup() {
           <span />
           <strong>Eco</strong>
         </div>
-        {['Inbox', 'Knowledge', 'Training', 'Channels', 'Analytics'].map((item, index) => (
+        {['Discovery', 'Knowledge', 'Tone', 'Website', 'Enquiries'].map((item, index) => (
           <p key={item} className={index === 1 ? 'is-active' : ''}>
             {item}
           </p>
@@ -40,14 +40,14 @@ function ProductMockup() {
 
       <main className="how-dashboard">
         <div className="how-dashboard-top">
-          <span>Good morning, Amanda</span>
+          <span>Building Eco around you</span>
           <button>Customize</button>
         </div>
 
         <div className="how-dashboard-grid">
           <div className="how-panel how-panel-large">
-            <h3>Training checklist</h3>
-            {['Website crawled', 'FAQs imported', 'Tone rules approved'].map((item, index) => (
+            <h3>Build checklist</h3>
+            {['Business details mapped', 'Customer tone captured', 'Website chat prepared'].map((item, index) => (
               <div className="how-check-row" key={item}>
                 <span className={index === 2 ? '' : 'is-done'} />
                 <p>{item}</p>
@@ -56,8 +56,8 @@ function ProductMockup() {
           </div>
 
           <div className="how-panel how-timer">
-            <h3>Setup time</h3>
-            <strong>04:21</strong>
+            <h3>Response cover</h3>
+            <strong>24/7</strong>
             <div>
               <span />
               <span />
@@ -69,12 +69,12 @@ function ProductMockup() {
             <div className="how-rings">
               <span />
             </div>
-            <p>87% resolved</p>
+            <p>Ready to answer</p>
           </div>
 
           <div className="how-panel how-assigned">
-            <h3>Recent answers</h3>
-            {['Delivery policy', 'Refund window', 'Pro pricing'].map((item, index) => (
+            <h3>Business answers</h3>
+            {['Services offered', 'Pricing questions', 'Contact capture'].map((item, index) => (
               <div className="how-answer-row" key={item}>
                 <span>{index + 1}</span>
                 <p>{item}</p>
@@ -114,7 +114,7 @@ export default function HowItWorks() {
       <div className="how-container">
         <div className="how-heading">
           <span className="features-pill">Solutions</span>
-          <h2>Launch your AI support assistant in three steps</h2>
+          <h2>A simple way to put Eco to work</h2>
         </div>
 
         <div className="how-step-grid">
